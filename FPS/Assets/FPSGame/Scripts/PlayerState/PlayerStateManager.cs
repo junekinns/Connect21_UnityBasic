@@ -1,18 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    // 플레이어의 상태를 정의하는 열거형(Enum).
+    public enum EPlayerState
     {
-        
+        Idle, Move
     }
 
-    // Update is called once per frame
-    void Update()
+    // 플레이어의 현재 상태를 추적하기 위한 변수.
+    public EPlayerState currentState = EPlayerState.Idle;
+
+    // 플레이어가 가질 수 있는 모든 상태(스크립트).
+    public PlayerState[] states;
+
+    // 플레이어의 애니메이션 설정 관련 컨트롤러 스크립트.
+    public PlayerAnimationController animationController;
+
+    private void SetState(EPlayerState newState)
     {
-        
+        // 예외 처리.
+        // 현재 상태가 새로 변경할 상태와 같은지 비교하고,
+        // 같은 경우에는 아무런 처리 하지 않도록 함.
+        if (currentState == newState)
+        {
+            return;
+        }
+
+        // 1. 현재 상태의 스크립트를 비활성화.
+        states[(int)currentState].enabled = false;
+
+        // 2. 변경할 상태의 컴포넌트를 활성화.
+        states[(int)newState].enabled = true;
+
+        // 3. 현재 상태를 새로운 상태 값으로 설정.
+        currentState = newState;
+
+        // 4. 애니메이션 State 파라미터 설정.
+        animationController.SetStateParameter((int)newState);
+    }
+
+    private void Update()
+    {
+        // 상태 전환.
+        // 입력이 없는 지 확인.
+        if (PlayerInputManager.Horizontal == 0f && PlayerInputManager.Vertical == 0f)
+        {
+            // 입력이 없으면 기본 상태로 전환.
+            SetState(EPlayerState.Idle);
+        }
+        else
+        {
+            // 이동 상태로 전환.
+            SetState(EPlayerState.Move);
+        }
     }
 }

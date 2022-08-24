@@ -10,4 +10,11 @@ public class PlayerAnimationController : MonoBehaviour
     {
         animator.SetInteger("State", state);
     }
+
+    private void Update()
+    {
+        // 방향키 입력을 읽어서 파라미터에 설정.
+        animator.SetFloat("Horizontal", PlayerInputManager.Horizontal);
+        animator.SetFloat("Vertical", PlayerInputManager.Vertical);
+    }
 }
