@@ -19,3 +19,7 @@
 ## Day6
 - Bullet 구현
 ![Day6](6.png)
+
+## Day7
+- Aim 구현
+![Day7](7.png)

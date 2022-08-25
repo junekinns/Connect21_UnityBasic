@@ -25,6 +25,7 @@ public class PlayerWeaponRifle : PlayerWeapon
         );
 
         // 발사 소리 재생.
+        // audioPlayer.PlayOneShot(fireSound);
         audioPlayer.PlayOneShot(fireSound);
     }
 }

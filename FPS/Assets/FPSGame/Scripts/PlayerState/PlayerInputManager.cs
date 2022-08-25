@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerInputManager : MonoBehaviour
@@ -15,6 +16,10 @@ public class PlayerInputManager : MonoBehaviour
     // 부울(Boolean) 참 또는 거짓.
     public static bool IsFire;      // 마우스 왼쪽 클릭/왼쪽 Ctrl.
 
+    private void Start(){
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     void Update()
     {
         Horizontal = Input.GetAxis("Horizontal");
@@ -23,6 +28,6 @@ public class PlayerInputManager : MonoBehaviour
         Turn = Input.GetAxis("Mouse X");
         Look = Input.GetAxis("Mouse Y");
 
-        IsFire = Input.GetButtonDown("Fire1");
+        IsFire = Input.GetMouseButtonDown(0);
     }
 }
