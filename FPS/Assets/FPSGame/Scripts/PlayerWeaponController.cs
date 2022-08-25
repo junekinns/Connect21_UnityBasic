@@ -15,4 +15,14 @@ public class PlayerWeaponController : MonoBehaviour
         // 무기 장착.
         weapon.LaunchWeapon(weaponHolder);
     }
+
+    private void Update()
+    {
+        // 입력 확인.
+        if (PlayerInputManager.IsFire == true)
+        {
+            // 발사 명령 전달.
+            weapon.Fire();
+        }
+    }
 }

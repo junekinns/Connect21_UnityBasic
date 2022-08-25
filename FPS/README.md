@@ -15,3 +15,7 @@
 - Weapon 시스템 적용
 - 실수로 캐릭터 머터리얼 망가짐
 ![Day5](5.png)
+
+## Day6
+- Bullet 구현
+![Day6](6.png)

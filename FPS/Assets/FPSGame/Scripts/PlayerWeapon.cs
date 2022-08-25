@@ -31,4 +31,7 @@ public class PlayerWeapon : MonoBehaviour
         myTransform.localRotation = Quaternion.identity * Quaternion.Euler(rotationOffset);
         myTransform.localScale = Vector3.one;
     }
+
+    public virtual void Fire(){
+    }
 }
