@@ -23,3 +23,7 @@
 ## Day7
 - Aim 구현
 ![Day7](7.png)
+
+## Day8~9
+- UI / Enemy 구현
+![Day9](9.png)

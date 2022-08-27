@@ -3,7 +3,6 @@ using UnityEngine;
 // PlayerState 클래스를 상속함.
 public class PlayerMoveState : PlayerState
 {
-    public float speed = 5f;
     
     // 캐릭터 컨트롤러 컴포넌트.
     public CharacterController characterController;
@@ -25,10 +24,10 @@ public class PlayerMoveState : PlayerState
         base.Update();
 
         // 받은 입력을 바탕으로 이동 방향 만들기.
-        Vector3 direction = myTransform.right * PlayerInputManager.Horizontal + myTransform.forward * PlayerInputManager.Vertical;
+        Vector3 direction = transform.right * PlayerInputManager.Horizontal + transform.forward * PlayerInputManager.Vertical;
 
         // 이동 처리.
-        characterController.Move(direction.normalized * speed * Time.deltaTime);
+        characterController.Move(direction.normalized * data.moveSpeed * Time.deltaTime);
     }
 
     protected override void OnDisable()

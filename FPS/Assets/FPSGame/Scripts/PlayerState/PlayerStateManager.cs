@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour
@@ -5,7 +6,7 @@ public class PlayerStateManager : MonoBehaviour
     // 플레이어의 상태를 정의하는 열거형(Enum).
     public enum EPlayerState
     {
-        Idle, Move
+        Idle=0, Move
     }
 
     // 플레이어의 현재 상태를 추적하기 위한 변수.
@@ -16,12 +17,11 @@ public class PlayerStateManager : MonoBehaviour
 
     // 플레이어의 애니메이션 설정 관련 컨트롤러 스크립트.
     public PlayerAnimationController animationController;
+    
+    public PlayerData data;
 
     private void SetState(EPlayerState newState)
     {
-        // 예외 처리.
-        // 현재 상태가 새로 변경할 상태와 같은지 비교하고,
-        // 같은 경우에는 아무런 처리 하지 않도록 함.
         if (currentState == newState)
         {
             return;
@@ -38,6 +38,14 @@ public class PlayerStateManager : MonoBehaviour
 
         // 4. 애니메이션 State 파라미터 설정.
         animationController.SetStateParameter((int)newState);
+    }
+
+    private void OnEnable(){
+        SetState(EPlayerState.Idle);
+
+        foreach (PlayerState playerState in states){
+            playerState.SetData(data);
+        }
     }
 
     private void Update()
